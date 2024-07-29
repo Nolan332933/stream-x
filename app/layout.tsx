@@ -9,8 +9,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "N-Gaming",
-  description: "FreeStreaming Platform for Gamers",
+  title: "Streamify",
+  description: "FreeStreaming Platform for Gamer Streamers",
 };
 
 export default function RootLayout({

@@ -15,10 +15,8 @@ export const Logo = () => {
         <Image src="/spooky.svg" alt="Game-X" height="80" width="80" />
       </div>
       <div className={cn("flex flex-col items-center", font.className)}>
-        <p className="text-xl font-semibold">N-Gaming</p>
-        <p className="text-sm text-muted-foreground">
-          Come Stream at Nolan&apos;s Stream-X
-        </p>
+        <p className="text-xl font-semibold">Streamify</p>
+        <p className="text-sm text-muted-foreground">Come Chill and Stream!</p>
       </div>
     </div>
   );
