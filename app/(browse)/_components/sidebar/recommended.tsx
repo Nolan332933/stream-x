@@ -4,12 +4,13 @@ import { User } from "@prisma/client";
 import { UserItem, UserItemSkeleton } from "./user-item";
 
 interface RecommendedProps {
-  data: User[];
+  data?: User[];
 }
 
-export const Recommended = ({ data }: RecommendedProps) => {
+export const Recommended = ({ data = [] }: RecommendedProps) => {
   const { collapsed } = useSidebar((state) => state);
   const showLabel = !collapsed && data.length > 0;
+  console.log("User data:", data);
   return (
     <div>
       {showLabel && (
@@ -19,7 +20,6 @@ export const Recommended = ({ data }: RecommendedProps) => {
       )}
       <ul className="space-y-2 px-2">
         {data.map((user) => (
-          //   <div key={user.id}>{user.username}</div>
           <UserItem
             key={user.id}
             username={user.username}
