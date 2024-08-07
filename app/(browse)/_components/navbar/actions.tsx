@@ -1,3 +1,4 @@
+// Actions.tsx
 import { Button } from "@/components/ui/button";
 import { SignInButton, UserButton } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
@@ -14,7 +15,7 @@ export const Actions = async () => {
         </SignInButton>
       )}
       {!!user && (
-        <div className="flex items-cneter gap-x-4">
+        <div className="flex items-center gap-x-4">
           <Button
             size="sm"
             variant="ghost"
