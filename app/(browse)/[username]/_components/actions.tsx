@@ -6,6 +6,7 @@ import { useTransition } from "react";
 import { toast } from "sonner";
 import { useAuth } from "@clerk/nextjs"; // Import Clerk's useAuth hook
 import { useRouter } from "next/navigation"; // Import useRouter for navigation
+import { onBlock, onUnblock } from "@/actions/block";
 
 interface ActionProps {
   isFollowing: boolean;
@@ -48,9 +49,24 @@ export const Actions = ({ isFollowing, userId }: ActionProps) => {
     handleAction(isFollowing ? "unfollow" : "follow");
   };
 
+  const handelBlock = () => {
+    startTransition(() => {
+      onUnblock(userId)
+        .then((data) =>
+          toast.success(`unBlocked ${data?.blocked?.username} successfully`)
+        )
+        .catch(() => toast.error("Something went wrong"));
+    });
+  };
+
   return (
-    <Button disabled={isPending} onClick={onClick} variant="primary">
-      {isFollowing ? "Unfollow" : "Follow"}
-    </Button>
+    <>
+      <Button disabled={isPending} onClick={onClick} variant="primary">
+        {isFollowing ? "Unfollow" : "Follow"}
+      </Button>
+      <Button onClick={handelBlock} disabled={isPending}>
+        unBlock
+      </Button>
+    </>
   );
 };
