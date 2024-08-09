@@ -13,7 +13,7 @@ interface ToggleCardProps {
   label: string;
   value: boolean;
   field: FieldTypes;
-};
+}
 
 export const ToggleCard = ({
   label,
@@ -24,7 +24,7 @@ export const ToggleCard = ({
 
   const onChange = () => {
     startTransition(() => {
-       updateStream({ [field]: !value })
+      updateStream({ [field]: !value })
         .then(() => toast.success("Chat settings updated!"))
         .catch(() => toast.error("Something went wrong"));
     });
@@ -33,9 +33,7 @@ export const ToggleCard = ({
   return (
     <div className="rounded-xl bg-muted p-6">
       <div className="flex items-center justify-between">
-        <p className="font-semibold shrink-0">
-          {label}
-        </p>
+        <p className="font-semibold shrink-0">{label}</p>
         <div className="space-y-2">
           <Switch
             disabled={isPending}
@@ -51,7 +49,5 @@ export const ToggleCard = ({
 };
 
 export const ToggleCardSkeleton = () => {
-  return (
-    <Skeleton className="rounded-xl p-10 w-full" />
-  );
+  return <Skeleton className="rounded-xl p-10 w-full" />;
 };

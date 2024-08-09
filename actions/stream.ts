@@ -43,5 +43,5 @@ export const updateStream = async (values: Partial<Stream>) => {
     return stream;
   } catch {
     throw new Error("Internal Error");
-  };
+  }
 };
