@@ -14,12 +14,12 @@ interface ChatCommunityProps {
   hostName: string;
   viewerName: string;
   isHidden: boolean;
-};
+}
 
 export const ChatCommunity = ({
   hostName,
   viewerName,
-  isHidden
+  isHidden,
 }: ChatCommunityProps) => {
   const [value, setValue] = useState("");
   const debouncedValue = useDebounce<string>(value, 500);
@@ -40,16 +40,16 @@ export const ChatCommunity = ({
     }, [] as (RemoteParticipant | LocalParticipant)[]);
 
     return deduped.filter((participant) => {
-      return participant.name?.toLowerCase().includes(debouncedValue.toLowerCase())
+      return participant.name
+        ?.toLowerCase()
+        .includes(debouncedValue.toLowerCase());
     });
   }, [participants, debouncedValue]);
- 
+
   if (isHidden) {
     return (
       <div className="flex flex-1 items-center justify-center">
-        <p className="text-sm text-muted-foreground">
-          Community is disabled
-        </p>
+        <p className="text-sm text-muted-foreground">Community is disabled</p>
       </div>
     );
   }
@@ -76,5 +76,5 @@ export const ChatCommunity = ({
         ))}
       </ScrollArea>
     </div>
-  )
-}
+  );
+};

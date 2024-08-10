@@ -87,11 +87,11 @@ export const Chat = ({
       )}
       {variant === ChatVariant.COMMUNITY && (
         <>
-          {/* <ChatCommunity
+          <ChatCommunity
             viewerName={viewerName}
             hostName={hostName}
             isHidden={isHidden}
-          /> */}
+          />
           <p>Chat Commuity</p>
         </>
       )}

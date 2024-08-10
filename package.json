@@ -42,7 +42,8 @@
     "svix": "^1.25.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
-    "usehooks-ts": "^3.1.0",
+    "use-debounce": "^10.0.2",
+    "usehooks-ts": "^2.16.0",
     "uuid": "^10.0.0",
     "zustand": "^4.5.4"
   },
