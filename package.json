@@ -21,6 +21,7 @@
     "@radix-ui/react-tooltip": "^1.1.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "jwt-decode": "^4.0.0",
     "livekit-client": "^1.15.13",
     "livekit-server-sdk": "^1.2.7",
     "lucide-react": "^0.394.0",
@@ -36,12 +37,14 @@
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "usehooks-ts": "^3.1.0",
+    "uuid": "^10.0.0",
     "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@types/node": "^20.14.13",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18",
+    "@types/uuid": "^10.0.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "postcss": "^8",
