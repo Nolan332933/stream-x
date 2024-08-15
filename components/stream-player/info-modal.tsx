@@ -24,11 +24,11 @@ import { UploadDropzone } from "@/lib/uploadthing";
 interface InfoModalProps {
   initialName: string;
   initialThumbnailUrl: string | null;
-};
+}
 
 export const InfoModal = ({
   initialName,
-  initialThumbnailUrl
+  initialThumbnailUrl,
 }: InfoModalProps) => {
   const router = useRouter();
   const closeRef = useRef<ElementRef<"button">>(null);
@@ -42,25 +42,31 @@ export const InfoModal = ({
       updateStream({ thumbnailUrl: null })
         .then(() => {
           toast.success("Thumbnail removed");
-          setThumbnailUrl("");
+          setThumbnailUrl(null); // Use null instead of an empty string
           closeRef?.current?.click();
         })
-        .catch(() => toast.error("Something went wrong"));
+        .catch((error) => {
+          console.error("Failed to remove thumbnail:", error);
+          toast.error("Something went wrong");
+        });
     });
-  }
+  };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     startTransition(() => {
-      updateStream({ name: name })
+      updateStream({ name })
         .then(() => {
           toast.success("Stream updated");
           closeRef?.current?.click();
         })
-        .catch(() => toast.error("Something went wrong"))
+        .catch((error) => {
+          console.error("Failed to update stream:", error);
+          toast.error("Something went wrong");
+        });
     });
-  }
+  };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -75,15 +81,11 @@ export const InfoModal = ({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>
-            Edit stream info
-          </DialogTitle>
+          <DialogTitle>Edit stream info</DialogTitle>
         </DialogHeader>
         <form onSubmit={onSubmit} className="space-y-14">
           <div className="space-y-2">
-            <Label>
-              Name
-            </Label>
+            <Label>Name</Label>
             <Input
               disabled={isPending}
               placeholder="Stream name"
@@ -91,10 +93,8 @@ export const InfoModal = ({
               value={name}
             />
           </div>
-          <div className="space-y-2">
-            <Label>
-              Thumbnail
-            </Label>
+          {/* <div className="space-y-2">
+            <Label>Thumbnail</Label>
             {thumbnailUrl ? (
               <div className="relative aspect-video rounded-xl overflow-hidden border border-white/10">
                 <div className="absolute top-2 right-2 z-[10]">
@@ -122,32 +122,29 @@ export const InfoModal = ({
                   endpoint="thumbnailUploader"
                   appearance={{
                     label: {
-                      color: "#FFFFFF"
+                      color: "#FFFFFF",
                     },
                     allowedContent: {
-                      color: "#FFFFFF"
-                    }
+                      color: "#FFFFFF",
+                    },
                   }}
                   onClientUploadComplete={(res) => {
+                    console.log(res); // Debug response
                     setThumbnailUrl(res?.[0]?.url);
-                    router.refresh();
+                    router.refresh(); // Optional: Avoid if state update is sufficient
                     closeRef?.current?.click();
                   }}
                 />
               </div>
             )}
-          </div>
+          </div> */}
           <div className="flex justify-between">
             <DialogClose ref={closeRef} asChild>
               <Button type="button" variant="ghost">
                 Cancel
               </Button>
             </DialogClose>
-            <Button
-              disabled={isPending}
-              variant="primary"
-              type="submit"
-            >
+            <Button disabled={isPending} variant="primary" type="submit">
               Save
             </Button>
           </div>
