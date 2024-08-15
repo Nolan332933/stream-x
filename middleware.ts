@@ -2,7 +2,12 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 const isProtectedRoute = createRouteMatcher(["/"]);
-const publicRoutes = ["/", "/api/webhooks(.*)", "/api/uploadthing"];
+const publicRoutes = [
+  "/",
+  "/api/webhooks(.*)",
+  "/api/uploadthing",
+  "/:username",
+];
 
 const isPublicRoute = (request: Request) => {
   const url = new URL(request.url);
